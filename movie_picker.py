@@ -45,7 +45,7 @@ def choose_film(movie_df, genres_list):
     print('genres_list')
     movie_df['WATCHED'] = movie_df['WATCHED'].astype('bool')
 
-    filt_movs=movie_list[movie_list['WATCHED']==False]
+    filt_movs=movie_df[movie_df['WATCHED']==False]
     filtered_movies=(filt_movs[filt_movs[
         'GENRE'].isin(genres_list)])
     print(filtered_movies)
