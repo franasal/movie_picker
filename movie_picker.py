@@ -47,7 +47,7 @@ def choose_film(movie_df, genres_list):
 
     filt_movs=movie_df[movie_df['WATCHED']==False]
     filtered_movies=(filt_movs[filt_movs[
-        'GENRE'].isin(genres_list)])
+        'GENRE'].isin(genres_list)]).reset_index()
     print(filtered_movies)
     random_num=randint(1, len(filtered_movies)-1)
     if genres_list:
