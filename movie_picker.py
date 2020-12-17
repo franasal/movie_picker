@@ -42,10 +42,13 @@ def choose_film(movie_df, genres_list):
     """
     a movie picker for the wg 77a2R!!!
     """
-
+    print('genres_list')
     movie_df['WATCHED'] = movie_df['WATCHED'].astype('bool')
-    filtered_movies=(movie_df[movie_df[
-        'GENRE'].isin(genres_list) & movie_df['WATCHED']==False])
+
+    filt_movs=movie_list[movie_list['WATCHED']==False]
+    filtered_movies=(filt_movs[filt_movs[
+        'GENRE'].isin(genres_list)])
+    print(filtered_movies)
     random_num=randint(1, len(filtered_movies)-1)
     if genres_list:
         st.text(f"performing super complex calculations\nto pick an awesome {genres_list} movie ")
