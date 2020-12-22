@@ -11,7 +11,8 @@ def get_movie_data():
 
     df = pd.read_excel("https://docs.google.com/spreadsheets/d/e/2PACX-1vRnJSiajjr_c9JvB-AwFGXJftAKUcZSKSylD4yhJRojK30bZO5BNxeIVafRACILnKAZIRsMlKbGKJZK/pub?output=xlsx",
                                     sheet_name=0)
-    return df
+    df['WATCHED'] = df['WATCHED'].astype('bool')
+    return df[df['WATCHED']==False]
 
 def main():
     df = get_movie_data()
@@ -49,7 +50,10 @@ def choose_film(movie_df, genres_list):
     filtered_movies=(filt_movs[filt_movs[
         'GENRE'].isin(genres_list)]).reset_index()
     print(filtered_movies)
-    random_num=randint(1, len(filtered_movies)-1)
+    if len(filtered_movies) == 1:
+        random_num=0
+    else:
+        random_num=randint(1, len(filtered_movies)-1)
     if genres_list:
         st.text(f"performing super complex calculations\nto pick an awesome {genres_list} movie ")
     else:
